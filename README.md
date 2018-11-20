@@ -30,7 +30,7 @@ const connector = new Sqlite();
 
 // Creating an in-memory async connection
 const memoryConn = await connector.createInMemory({
-  vebose: false
+  verbose: false
 });
 
 // Creating a regular async connection
