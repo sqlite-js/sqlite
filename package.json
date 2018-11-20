@@ -10,5 +10,8 @@
   },
   "scripts": {
     "install": "neon build"
+  },
+  "devDependencies": {
+    "jest": "^23.6.0"
   }
 }
