@@ -1,12 +1,14 @@
 #[macro_use]
 extern crate neon;
+extern crate rusqlite;
 
+use rusqlite::version::{version as sqlite_version};
 use neon::prelude::*;
 
-fn hello(mut cx: FunctionContext) -> JsResult<JsString> {
-    Ok(cx.string("hello node"))
+fn version(mut cx: FunctionContext) -> JsResult<JsString> {
+    Ok(cx.string(sqlite_version()))
 }
 
-register_module!(mut cx, {
-    cx.export_function("hello", hello)
+register_module!(mut m, {
+    m.export_function("version", version)
 });

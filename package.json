@@ -1,7 +1,7 @@
 {
-  "name": "sqlite",
-  "version": "0.1.0",
-  "description": "",
+  "name": "@sqlite/sqlite",
+  "version": "0.0.1",
+  "description": "An experimental SQLite library for Node using Neon",
   "main": "lib/index.js",
   "author": "Amila Welihinda <amilajack@gmail.com>",
   "license": "MIT",
@@ -9,9 +9,16 @@
     "neon-cli": "^0.2.0"
   },
   "scripts": {
-    "install": "neon build"
+    "build": "neon build",
+    "install": "yarn build",
+    "lint": "eslint lib test"
   },
   "devDependencies": {
+    "eslint": "^5.9.0",
+    "eslint-config-bliss": "^3.0.0",
     "jest": "^23.6.0"
+  },
+  "eslintConfig": {
+    "extends": "bliss"
   }
 }
