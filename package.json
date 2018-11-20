@@ -14,9 +14,9 @@
     "lint": "eslint lib test"
   },
   "devDependencies": {
-    "eslint": "^5.9.0",
-    "eslint-config-bliss": "^3.0.0",
-    "jest": "^23.6.0"
+    "eslint": "5.9.0",
+    "eslint-config-bliss": "3.0.0",
+    "jest": "23.6.0"
   },
   "eslintConfig": {
     "extends": "bliss"

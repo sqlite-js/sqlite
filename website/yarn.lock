@@ -1769,9 +1769,9 @@ diacritics-map@^0.1.0:
   resolved "https://registry.npmjs.org/diacritics-map/-/diacritics-map-0.1.0.tgz#6dfc0ff9d01000a2edf2865371cac316e94977af"
   integrity sha1-bfwP+dAQAKLt8oZTccrDFulJd68=
 
-docusaurus@^1.5.1:
+docusaurus@1.5.1:
   version "1.5.1"
-  resolved "https://registry.npmjs.org/docusaurus/-/docusaurus-1.5.1.tgz#ce1dc0f3531d6812f2b4a9e9a0151d885d076d78"
+  resolved "https://registry.yarnpkg.com/docusaurus/-/docusaurus-1.5.1.tgz#ce1dc0f3531d6812f2b4a9e9a0151d885d076d78"
   integrity sha512-pRDFZDAw7Kgxqzr9imlMACjwXvpfXI6wR8WrWibJUSs8cOfvXCMCEicWdpCfJaJhblWGfFkydG7ZZhows/SAzw==
   dependencies:
     "@babel/core" "^7.0.0"
