@@ -1,7 +1,14 @@
-const Sqlite = require('..');
+const { version, Sqlite } = require('..');
 
 describe('basic', () => {
   it('should get sqlite version', () => {
-    expect(Sqlite.version()).toMatchSnapshot();
+    expect(version()).toMatchSnapshot();
+  })
+
+  it('should get ', async () => {
+    const conn = new Sqlite();
+    await conn.create({
+      verbose: true
+    });
   })
 })

@@ -12,6 +12,8 @@ An experimental SQLite library for Node using Neon
   * Parallel queries
   * Serialization
   * Traces and profiling
+  * Interrupting queries
+  * Exporting a database
 * Modern infrastructure
 * Target latest node and electron versions
 * Promise based API
