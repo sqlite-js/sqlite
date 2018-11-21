@@ -1,13 +1,15 @@
 # sqlite
 
+[![Build Status](https://travis-ci.com/sqlite-js/sqlite.svg?branch=master)](https://travis-ci.com/sqlite-js/sqlite)
+
 An experimental SQLite library for Node using Neon
 
 ## Goals
 * APIs
   * Query binding
   * Connection creation and closing
-  * Connection Pooling
-  * Parallel queryies
+  * Connection pooling
+  * Parallel queries
   * Serialization
   * Traces and profiling
 * Modern infrastructure
@@ -28,15 +30,10 @@ import Sqlite from '@sqlite/sqlite';
 
 const connector = new Sqlite();
 
-// Creating an in-memory async connection
-const memoryConn = await connector.createInMemory({
-  verbose: false
-});
-
 // Creating a regular async connection
 const conn = await connection.create({
-  database: '/path/to/database',
-  verbose: true
+  database: '/path/to/database', // ':memory:'
+  verbose: true                  // process.env.NODE_ENV !== 'production'
 });
 
 // Parallel queries

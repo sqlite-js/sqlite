@@ -9,7 +9,7 @@
     "neon-cli": "^0.2.0"
   },
   "scripts": {
-    "build": "neon build",
+    "build": "neon build --release",
     "install": "yarn build",
     "lint": "eslint lib test",
     "test": "jest ."
