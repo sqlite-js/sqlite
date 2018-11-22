@@ -8,7 +8,6 @@ matrix:
       rust: nightly-2018-10-12
       env:
         - TRAVIS_NODE_VERSION="10"
-
     - os: linux
       language: rust
       rust: nightly-2018-10-12
@@ -22,12 +21,6 @@ matrix:
             - gcc-multilib
             - g++-8
             - g++-multilib
-
-    - os: windows
-      language: node_js
-      node_js:
-        - node
-
     - os: windows
       language: rust
       rust: nightly-2018-10-12
@@ -42,6 +35,7 @@ cache:
 
 before_install:
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then export CXX="g++-8"; fi
+  - if [[ "$TRAVIS_OS_NAME" == "windows" ]]; then choco install nodejs; fi
   - nvm install $TRAVIS_NODE_VERSION
   - nvm use ${TRAVIS_NODE_VERSION}
   - node -v
