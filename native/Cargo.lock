@@ -147,7 +147,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 
 [[package]]
 name = "sqlite"
-version = "0.1.0"
+version = "0.0.1"
 dependencies = [
  "neon 0.2.0 (registry+https://github.com/rust-lang/crates.io-index)",
  "neon-build 0.2.0 (registry+https://github.com/rust-lang/crates.io-index)",

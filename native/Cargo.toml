@@ -1,6 +1,6 @@
 [package]
 name = "sqlite"
-version = "0.1.0"
+version = "0.0.1"
 authors = ["Amila Welihinda <amilajack@gmail.com>"]
 license = "MIT"
 build = "build.rs"

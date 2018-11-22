@@ -2,8 +2,8 @@
 extern crate neon;
 extern crate rusqlite;
 
-use rusqlite::Connection;
 use neon::prelude::*;
+use rusqlite::{Connection, NO_PARAMS};
 
 fn version(mut cx: FunctionContext) -> JsResult<JsString> {
     Ok(cx.string(rusqlite::version::version()))
@@ -12,7 +12,7 @@ fn version(mut cx: FunctionContext) -> JsResult<JsString> {
 pub struct Sqlite {
     pub conn: Option<Connection>,
     pub database: Option<String>,
-    pub verbose: Option<bool>
+    pub verbose: Option<bool>,
 }
 
 declare_types! {
@@ -52,22 +52,49 @@ declare_types! {
             }
 
             let conn = if database_value == ":memory:".to_string() {
-                Connection::open_in_memory().unwrap();
+                Connection::open_in_memory().unwrap()
             } else {
-                Connection::open(&database_value).unwrap();
+                Connection::open(&database_value).unwrap()
             };
 
-            let this = cx.this();
             let js_database_value = cx.string(database_value);
             let js_verbose_value = cx.boolean(verbose_value);
+
+            let mut this = cx.this();
             this.set(&mut cx, "database", js_database_value)?;
             this.set(&mut cx, "verbose", js_verbose_value)?;
+            cx.borrow_mut(&mut this, |mut sqlite| {
+                sqlite.conn = Some(conn);
+            });
 
             Ok(this.upcast())
         }
 
-        method execute() {
+        method execute(mut cx) {
+            let sql = cx.argument::<JsString>(0)?.value();
+            let this = cx.this();
 
+            let vec = cx.borrow(&this, |sqlite| {
+                let conn = (&sqlite.conn).as_ref().unwrap();
+                let mut stmt = conn.prepare(&sql).unwrap();
+                let res: Vec<String> = stmt
+                    .query_map(NO_PARAMS, |row| row.get(0))
+                    .unwrap()
+                    .into_iter()
+                    .map(|r| r.unwrap())
+                    .collect();
+                res
+            });
+
+            let js_array = JsArray::new(&mut cx, vec.len() as u32);
+            vec.iter()
+                .enumerate()
+                .for_each(|(i, obj)| {
+                    let js_string = cx.string(obj);
+                    js_array.set(&mut cx, i as u32, js_string);
+                });
+
+            Ok(js_array.upcast())
         }
 
         method statement(mut cx) {
