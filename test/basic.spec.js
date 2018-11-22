@@ -3,10 +3,12 @@ const path = require('path');
 
 describe('basic', () => {
   it('should get sqlite version', () => {
-    expect(version()).toMatchSnapshot();
-  })
+    // Ideally we could snapshot test this but we can't do this until
+    // we test against a fixed version of SQLite
+    expect(version()).toContain('.');
+  });
 
-  it('should get ', async () => {
+  it('should execute query statements', async () => {
     const conn = new Sqlite();
 
     await conn.create({
@@ -29,5 +31,5 @@ describe('basic', () => {
     `);
 
     conn.execute('DROP TABLE contacts;');
-  })
-})
+  });
+});
