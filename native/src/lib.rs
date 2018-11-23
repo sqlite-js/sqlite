@@ -15,6 +15,16 @@ pub struct Sqlite {
     pub verbose: Option<bool>,
 }
 
+fn map_err_to_js_err<T>(res: Result<T, rusqlite::Error>) -> T {
+    match res {
+        Ok(r) => r,
+        Err(e) => {
+            println!("asdfasfd{}", e);
+            panic!(e);
+        }
+    }
+}
+
 declare_types! {
     pub class JsSqlite for Sqlite {
         init(_cx) {
