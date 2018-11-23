@@ -25,11 +25,33 @@ describe('basic', () => {
       VALUES ("john");
     `);
 
-    conn.execute(`
+    expect(
+      await conn.execute(`
       SELECT *
       FROM contacts;
-    `);
+    `)
+    ).toMatchSnapshot();
 
     conn.execute('DROP TABLE contacts;');
+  });
+
+  it('should format errors', async () => {
+    const conn = new Sqlite();
+
+    await conn.create({
+      verbose: true,
+      database: path.join(__dirname, 'test.db')
+    });
+
+    conn.execute('DROP TABLE IF EXISTS contacts;');
+
+    conn.execute('CREATE TABLE contacts (t VARCHAR PRIMARY KEY);');
+
+    expect(() => {
+      conn.execute(`
+        INSERT INTO contacts (t)
+        VALUES (asdfasdf);
+      `);
+    }).toThrowErrorMatchingSnapshot();
   });
 });

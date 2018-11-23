@@ -91,7 +91,7 @@ declare_types! {
                 .enumerate()
                 .for_each(|(i, obj)| {
                     let js_string = cx.string(obj);
-                    js_array.set(&mut cx, i as u32, js_string);
+                    js_array.set(&mut cx, i as u32, js_string).unwrap();
                 });
 
             Ok(js_array.upcast())
