@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`basic should execute query statements 1`] = `
+Array [
+  "john",
+]
+`;
+
+exports[`basic should format errors 1`] = `"internal error in Neon module: called \`Result::unwrap()\` on an \`Err\` value: SqliteFailure(Error { code: Unknown, extended_code: 1 }, Some(\\"no such column: asdfasdf\\"))"`;

@@ -1,5 +1,7 @@
 # sqlite
 
+🚧 A Work in Progress. Do Not Use 🚧
+
 [![Build Status](https://travis-ci.com/sqlite-js/sqlite.svg?branch=master)](https://travis-ci.com/sqlite-js/sqlite)
 
 An experimental SQLite library for Node using Neon
@@ -47,4 +49,12 @@ await Promise.all([
 // Statement currying
 const updateTables = await db.statement('UPDATE tbl SET name = ? WHERE email = ?');
 await updateTables('john', 'john@gmail.com');
+```
+
+## Local Development
+```bash
+git clone https://github.com/sqlite-js/sqlite
+cd sqlite
+yarn
+yarn test
 ```
