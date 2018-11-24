@@ -20,9 +20,6 @@
     "jest": "^23.6.0"
   },
   "eslintConfig": {
-    "extends": "bliss",
-    "rules": {
-      "prettier/prettier": ["error", {"singleQuote": true, "parser": "flow"}]
-    }
+    "extends": "bliss"
   }
 }
