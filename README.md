@@ -58,3 +58,13 @@ cd sqlite
 yarn
 yarn test
 ```
+
+
+## Prior art
+
+Yarn wouldn't exist if it wasn't for excellent prior art. Sqlite has been inspired by the following projects:
+
+ - [better-sqlite](https://github.com/JoshuaWise/better-sqlite3)
+ - [sqlite3](https://github.com/mapbox/node-sqlite3)
+ - [sqlite](https://github.com/kriasoft/node-sqlite)
+ - [rusqlite](https://github.com/jgallagher/rusqlite)
