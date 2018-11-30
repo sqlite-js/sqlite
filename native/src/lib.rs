@@ -129,7 +129,6 @@ mod tests {
         b.iter(|| {
             let conn = Connection::open_in_memory().unwrap();
             let stmt = conn.prepare("CREATE TABLE lorem (info TEXT)").unwrap();
-            // conn.close().unwrap();
         });
     }
 }

@@ -9,12 +9,14 @@
     "neon-cli": "^0.2.0"
   },
   "scripts": {
+    "bench": "node bench/basic.bench.js",
     "build": "neon build --release",
     "install": "yarn build",
     "lint": "eslint lib test",
     "test": "jest ."
   },
   "devDependencies": {
+    "benchmark": "^2.1.4",
     "better-sqlite3": "^5.0.1",
     "eslint": "^5.9.0",
     "eslint-config-bliss": "^3.0.0",
