@@ -11,7 +11,7 @@ describe('basic', () => {
   it('should execute query statements', async () => {
     const conn = new Sqlite();
 
-    await conn.create({
+    await conn.open({
       verbose: true,
       database: path.join(__dirname, 'test.db')
     });
@@ -38,7 +38,7 @@ describe('basic', () => {
   it('should format errors', async () => {
     const conn = new Sqlite();
 
-    await conn.create({
+    await conn.open({
       verbose: true,
       database: path.join(__dirname, 'test.db')
     });

@@ -15,14 +15,13 @@
     "test": "jest ."
   },
   "devDependencies": {
+    "better-sqlite3": "^5.0.1",
     "eslint": "^5.9.0",
     "eslint-config-bliss": "^3.0.0",
-    "jest": "^23.6.0"
+    "jest": "^23.6.0",
+    "sqlite3": "^4.0.4"
   },
   "eslintConfig": {
-    "extends": "bliss",
-    "rules": {
-      "prettier/prettier": ["error", {"singleQuote": true, "parser": "flow"}]
-    }
+    "extends": "bliss"
   }
 }

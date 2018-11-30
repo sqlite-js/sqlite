@@ -1,3 +1,5 @@
+#![feature(test)]
+extern crate test;
 #[macro_use]
 extern crate neon;
 extern crate rusqlite;
@@ -15,16 +17,6 @@ pub struct Sqlite {
     pub verbose: Option<bool>,
 }
 
-fn map_err_to_js_err<T>(res: Result<T, rusqlite::Error>) -> T {
-    match res {
-        Ok(r) => r,
-        Err(e) => {
-            println!("asdfasfd{}", e);
-            panic!(e);
-        }
-    }
-}
-
 declare_types! {
     pub class JsSqlite for Sqlite {
         init(_cx) {
@@ -35,7 +27,7 @@ declare_types! {
             })
         }
 
-        method create(mut cx) {
+        method open(mut cx) {
             let database_value: String;
             let verbose_value: bool;
 
@@ -107,7 +99,15 @@ declare_types! {
             Ok(js_array.upcast())
         }
 
-        method statement(mut cx) {
+        method prepare(mut cx) {
+            let sql = cx.argument::<JsString>(0)?.value();
+            let this = cx.this();
+
+            let _ = cx.borrow(&this, |sqlite| {
+                let conn = (&sqlite.conn).as_ref().unwrap();
+                let _ = conn.prepare(&sql).unwrap();
+            });
+
             Ok(cx.undefined().upcast())
         }
     }
@@ -118,3 +118,18 @@ register_module!(mut m, {
     m.export_function("version", version)?;
     Ok(())
 });
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use test::Bencher;
+
+    #[bench]
+    fn bench_create_table_rusqlite(b: &mut Bencher) {
+        b.iter(|| {
+            let conn = Connection::open_in_memory().unwrap();
+            let stmt = conn.prepare("CREATE TABLE lorem (info TEXT)").unwrap();
+            // conn.close().unwrap();
+        });
+    }
+}

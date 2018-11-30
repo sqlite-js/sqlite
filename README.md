@@ -20,6 +20,7 @@ An experimental SQLite library for Node using Neon
 * Target latest node and electron versions
 * Promise based API
 * Blob support
+* ESNext `BigInt` support
 * SQLite extensions support
 * Typescript support
 * Query caching support
@@ -35,7 +36,7 @@ import Sqlite from '@sqlite/sqlite';
 const connector = new Sqlite();
 
 // Creating a regular async connection
-const conn = await connection.create({
+const conn = await connection.open({
   database: '/path/to/database', // ':memory:'
   verbose: true                  // process.env.NODE_ENV !== 'production'
 });
@@ -48,7 +49,26 @@ await Promise.all([
 
 // Statement currying
 const updateTables = await db.statement('UPDATE tbl SET name = ? WHERE email = ?');
-await updateTables('john', 'john@gmail.com');
+const result = await updateTables('john', 'john@gmail.com');
+console.log(result);
+
+// Batching queries
+const updateTables = await db.batch(
+  `
+  ATTACH DATABASE ':memory:' AS my_attached;
+  BEGIN;
+  CREATE TABLE my_attached.foo(x INTEGER);
+  INSERT INTO my_attached.foo VALUES(42);
+  END
+  `;
+);
+const updateTables = await db.batch([
+  'ATTACH DATABASE ':memory:' AS my_attached;',
+  'BEGIN;',
+  'CREATE TABLE my_attached.foo(x INTEGER);',
+  'INSERT INTO my_attached.foo VALUES(42);',
+  'END'
+]);
 ```
 
 ## Local Development
