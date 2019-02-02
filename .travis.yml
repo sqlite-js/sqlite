@@ -36,8 +36,7 @@ cache:
 before_install:
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then export CXX="g++-8"; fi
   - if [[ "$TRAVIS_OS_NAME" == "windows" ]]; then choco install nodejs; fi
-  - nvm install $TRAVIS_NODE_VERSION
-  - nvm use ${TRAVIS_NODE_VERSION}
+  - if [[ "$TRAVIS_OS_NAME" != "windows" ]]; then nvm install $TRAVIS_NODE_VERSION && nvm use $TRAVIS_NODE_VERSION; fi
   - node -v
   - npm -v
   - npm i -g yarn@latest
