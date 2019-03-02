@@ -16,7 +16,7 @@
   },
   "devDependencies": {
     "better-sqlite3": "^5.4.0",
-    "eslint": "^5.14.1",
+    "eslint": "^5.15.0",
     "eslint-config-bliss": "^3.3.0",
     "jest": "^23.6.0",
     "sqlite3": "^4.0.6"
