@@ -42,7 +42,7 @@ csvtab = ["csv", "vtab"]
 array = ["vtab"]
 
 [dependencies]
-time = "0.1.0"
+time = "0.1.42"
 bitflags = "1.0"
 lru-cache = "0.1"
 chrono = { version = "0.4", optional = true }
