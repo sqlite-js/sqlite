@@ -6,7 +6,7 @@
   "author": "Amila Welihinda <amilajack@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "neon-cli": "^0.3.1"
+    "neon-cli": "^0.8.3"
   },
   "scripts": {
     "build": "neon build --release",
