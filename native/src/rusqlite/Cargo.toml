@@ -45,7 +45,7 @@ array = ["vtab"]
 time = "0.1.42"
 bitflags = "1.0"
 lru-cache = "0.1"
-chrono = { version = "0.4", optional = true }
+chrono = { version = "0.4.45", optional = true }
 serde_json = { version = "1.0", optional = true }
 csv = { version = "1.0", optional = true }
 lazy_static = { version = "1.0", optional = true }
